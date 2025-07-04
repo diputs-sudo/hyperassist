@@ -1,0 +1,10 @@
+epoch: 1 | train_loss: 1.23 | val_loss: 1.44 | acc: 0.55 | lr: 0.001 | grad_norm: 0.99
+epoch: 2 | train_loss: 1.05 | val_loss: 1.28 | acc: 0.62 | lr: 0.001 | grad_norm: 1.05
+epoch: 3 | train_loss: 1.00 | val_loss: 1.15 | acc: 0.66 | lr: 0.001 | grad_norm: 1.11
+epoch: 4 | train_loss: 0.99 | val_loss: 1.10 | acc: 0.68 | lr: 0.0008 | grad_norm: 1.12
+epoch: 5 | train_loss: 2.50 | val_loss: 1.09 | acc: 0.68 | lr: 0.0008 | grad_norm: 13.5
+epoch: 6 | train_loss: nan | val_loss: nan | acc: 0.68 | lr: 0.0008 | grad_norm: 14.0
+epoch: 7 | train_loss: 0.98 | val_loss: 1.08 | acc: 0.68 | lr: 0.0006 | grad_norm: 1.13
+
+
+you can use this to test it out! 

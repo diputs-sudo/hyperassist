@@ -1,0 +1,7 @@
+[
+  {"input": "What is the capital of France?", "output": "Paris"},
+  {"input": "What is 2 + 2?", "output": "4"},
+  {"input": "Who wrote '1984'?", "output": "George Orwell"},
+  {"input": "Largest planet in our solar system?", "output": "Jupiter"},
+  {"input": "Python is a type of?", "output": "Programming language"}
+]

@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hyperassist"
+version = "0.0.1"
+description = "AI training diagnostics and hyperparameter assistant."
+authors = [
+  { name="diputs-sudo", email="diputs-sudo@proton.me" }
+]
+license = "Apache-2.0"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "numpy",
+  "psutil"
+]
+
+[project.urls]
+Homepage = "https://pypi.org/project/hyperassist"
+Repository = "https://github.com/diputs-sudo/hyperassist"
+Issues = "https://github.com/diputs-sudo/hyperassist/issues"
+
+[tool.setuptools]
+packages = ["hyperassist"]
+
