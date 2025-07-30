@@ -4,7 +4,9 @@ from typing import Tuple
 import math
 
 def recommend_transformer_learning_rate(
-    step: int, d_model: int = 512, warmup_steps: int = 4000
+    step: int, 
+    d_model: int = 512, 
+    warmup_steps: int = 4000
 ) -> Tuple[float, str, str]:
     scale = d_model ** -0.5
     arg1 = step ** -0.5

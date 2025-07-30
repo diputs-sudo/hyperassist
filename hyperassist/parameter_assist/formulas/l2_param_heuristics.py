@@ -68,13 +68,16 @@ def recommend_param_init_scale(
     if method == "xavier":
         scale = 1.0 / math.sqrt(fan_in)
         formula = "scale = 1 / sqrt(fan_in)"
-        explanation = f"Xavier initializatino scale for fan_in = {fan_in}."
-    elif method == "he":
+        explanation = f"Xavier initialization: recommended for tanh/sigmoid activations. fan_in = {fan_in}."
+    elif method in ("he", "kaiming_uniform"):
         scale = math.sqrt(2.0 / fan_in)
-        formula = "scale = sqrt (2 / fan_in)"
-        explanation = f"He (Kaiming) init scale for ReLU type activations with fan_in = {fan_in}"
+        formula = "scale = sqrt(2 / fan_in)"
+        explanation = (
+            f"He (Kaiming) initialization: recommended for ReLU-type activations. "
+            f"fan_in = {fan_in}."
+        )
     else:
-        raise ValueError(f"Unknown init method: {method}")
+        raise ValueError(f"Unknown init method: {method}. Supported: 'xavier', 'he', 'kaiming_uniform'.")
     return scale, formula, explanation
 
 def recommend_embedding_dim(
@@ -88,3 +91,4 @@ def recommend_embedding_dim(
         f"Embedding dim scaled from vocab_size = {vocab_size} and model depth = {depth}. "
         f"Clamped between 128 and 2048 for stability. "
     )
+    return clamped, formula, explanation

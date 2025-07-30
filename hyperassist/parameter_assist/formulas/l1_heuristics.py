@@ -27,6 +27,22 @@ def recommend_weight_decay(compute_factor: float = 1.0) -> Tuple[float, str, str
     )
     return decay, formula, explanation
 
+def estimate_epoch_count(
+    total_steps: int, 
+    dataset_size: int, 
+    batch_size: int
+) -> Tuple[int, str, str]:
+    """
+    Estimate number of epochs based on total training steps, dataset size, and batch size.
+    """
+    epoch_count = round(total_steps / (dataset_size / batch_size))
+    formula = "epoch_count = (total_steps / (dataset_size / batch_size))"
+    explanation = (
+        "Estimates the number of epochs based on total training steps and dataset size. "
+        "Rounds to the nearest whole number since fractional epochs are not meaningful in most training loops."
+    )
+    return epoch_count, formula, explanation
+
 
 def recommend_optimizer(model_type: str) -> Tuple[str, str, str]:
     """
