@@ -1,6 +1,7 @@
 import re
 import sys
 import numpy as np
+from ..utils.color_utils import color
 
 def moving_avg(arr, window):
     if len(arr) < window:
@@ -93,16 +94,29 @@ def analyze_global(chunks):
         print("Suggestion: Increase dropout/weight decay or use early stopping.\n")
     return analysis
 
+def tag_color(tag):
+    if tag in ("instability", "exploding_gradient", "vanishing_gradient", "loss_jump"):
+        return "red"
+    if tag in ("loss_plateau", "acc_stuck", "overfit", "underfit"):
+        return "yellow"
+    if tag in ("lr_change",):
+        return "cyan"
+    return "green"
+
 def print_chunk_results(chunks):
     print("\n--- Per-epoch (chunk) analysis ---")
     for chunk in chunks:
-        summary = f"Epoch {chunk['epoch']} | train_loss={chunk['train_loss']} val_loss={chunk['val_loss']} acc={chunk['acc']} lr={chunk['lr']} grad_norm={chunk.get('grad_norm', None)}"
+        summary = (
+            f"Epoch {chunk['epoch']} | train_loss={chunk['train_loss']} "
+            f"val_loss={chunk['val_loss']} acc={chunk['acc']} lr={chunk['lr']} grad_norm={chunk.get('grad_norm', None)}"
+        )
+        print(color(summary, "reset"))
         if chunk['tags']:
-            print(summary)
             for tag, expl in zip(chunk['tags'], chunk['explanations']):
-                print(f"  [{tag}] {expl}")
+                c2 = tag_color(tag)
+                print("  " + color(f"[{tag}] {expl}", c2))
         else:
-            print(summary + " | OK")
+            print(color("  | OK", "green"))
     print("--- End of epoch analysis ---\n")
 
 def process_from_file(path, num_classes=2):
@@ -121,4 +135,4 @@ def process_from_stdin(num_classes=2):
     print_chunk_results(chunks)
     return analyze_global(chunks)
 
-# Optionally, you can create a LogReport object for downstream use (not shown here)
+
