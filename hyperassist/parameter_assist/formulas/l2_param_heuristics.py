@@ -16,7 +16,7 @@ def recommend_batch_size(
     formula = "batch = min(max_batch, RAM / (sample_size * buffer * compute))"
     explanation = (
         f"Estimates batch size based on available RAM ({ram_gb}GB), memory per sample "
-        f"({bytes_per_sample}B), and safety buffers. bugger_factor and compute_factor "
+        f"({bytes_per_sample}B), and safety buffers. buffer_factor and compute_factor "
         f"adjust for memory spikes and hardware speed."
     )
     return batch_size, formula, explanation
@@ -29,7 +29,7 @@ def recommend_total_steps(
     steps = int((dataset_size / batch_size) * epochs)
     formula = "total_steps = (dataset_size / batch_size) * epochs"
     explanation = (
-        f"Total trainning steps calculated from dataset size ({dataset_size}, batch size)"
+        f"Total training steps calculated from dataset size ({dataset_size}, batch size)"
         f"({batch_size}, and number of epochs ({epochs}).)"
     )
     return steps, formula, explanation
@@ -46,7 +46,7 @@ def recommend_warmup_steps(
     )
     return warmup, formula, explanation
 
-def recommend_graditent_accum_steps(
+def recommend_gradient_accum_steps(
     effective_batch_size: int,
     per_device_batch: int,
     num_devices: int
