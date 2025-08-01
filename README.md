@@ -1,10 +1,10 @@
-# HyperAssist
+# HyperAssist v0.0.3 
 
 **Transparent Hyperparameter Guidance and Log Analysis for Deep Learning**
 
 HyperAssist is a free, open source tool that helps you configure, debug, and understand your deep learning experiments no cloud, no paywalls, and no hidden magic numbers. 
 
-It analyzes your training logs for common problems, recommends research-backed hyperparameters with clear formulas, and explains every suggestion so you can learn and improve your workflow.
+It analyzes your training logs for common problems, recommends research backed hyperparameters with clear formulas, and explains every suggestion so you can learn and improve your workflow.
 
 ---
 
@@ -16,6 +16,38 @@ It analyzes your training logs for common problems, recommends research-backed h
 - **Privacy First:** All analysis is fully local no data leaves your machine, no signups required.
 - **Flexible API:** Use as a Python module or (coming soon) as a CLI tool.
 - **Free and Open Source:** No paywalls, no quotas, no cloud dependencies.
+
+---
+
+## What's New in HyperAssist v0.0.3 
+HyperAssist 0.0.3 is a massive leap forward, bringing 26 theory backed formulas and 57 configurable knobs, empowering you to tune like a top research lab without brute force.
+
+### Upgrades
+
+- **Formula Library Expanded:**
+  - **6 -> 26 formulas** spanning:
+    - **L1:** Core heuristics
+    - **L2:** Modern scaling laws
+    - **L3:** Transformer “secret sauce”
+    - **L4:** Cutting-edge research (PAC-Bayes, Fisher/NTK, Information Bottleneck)
+  - *These are the same theoretical levers powering today’s big models.*
+
+- **Full L4 Support (Research-Level):**
+  - PAC-Bayes optimal dropout solver
+  - Curvature-aware weight decay (`λ_max(Hessian)` scaling)
+  - Fisher/NTK-informed learning rate
+  - Information bottleneck-driven attention dropout
+  - Entropy/MDL-based parameter initialization
+  - Gradient Noise Scale batch sizing
+
+- **57 Contextual Knobs for Precision Tuning:**
+  - Model architecture, dataset, compute hardware, theoretical priors, information theory signals, and more
+  - Partial configs still work — **provide what you know, HyperAssist fills the rest.**
+
+- **Blazing Fast Execution:**
+  - All **26 formulas** calculated in **~1s** (even with L4 enabled)
+    - *First run may take slightly longer while cache is built.*
+  - No sweeps. No trial-and-error. **Pure math.**
 
 ---
 
@@ -38,19 +70,22 @@ from hyperassist import parameter_assist
 
 params = {
     "learning_rate": 0.01,
-    "per_device_train_batch_size": 16,
-    "dropout": 0.5,
-    "weight_decay": 1e-4
+    "dropout": 0.3,
+    "weight_decay": 1e-5,
 }
 
 parameter_assist.check(
     params,
     model_type="cnn",
-    dataset_size=10000,
-    input_shape="3x32x32"
+    dataset_size=50000,
+    ram_gb=16,
+    num_gpus=2,
+    epochs=20,
+    per_device_batch=32,
 )
 ```
-For more examples, see the [examples directory](https://github.com/diputs-sudo/hyperassist/docs/api/).
+For fully API explained, see the [API directory](https://github.com/diputs-sudo/hyperassist/tree/main/docs/api)
+For more examples, see the [test/example file](https://github.com/diputs-sudo/hyperassist/blob/main/test/test.py).
 
 ---
 
@@ -62,27 +97,10 @@ All formulas and heuristics are documented and referenced so you’re never left
 
 ---
 
-## Supported Parameters and Formulas
-
-- **Learning Rate:**  
-  - CNNs: Linear scaling rule 
-  - Transformers: Inverse square root schedule
-  - Generic: Dataset-size scaling rule
-- **Batch Size:**  
-  - RAM- and compute-aware recommendation
-- **Dropout:**  
-  - Adaptive to model complexity
-- **Weight Decay:**  
-  - Scaled for compute resources
-
-See [docs/formulas/](https://github.com/diputs-sudo/hyperassist/docs/formulas) for full details and explanations.
-
----
-
 ## Documentation
 
-- [Formulas and Explanations](./docs/formulas/)
-- [API Reference](./docs/api.md)
+- [Formulas and Explanations](https://github.com/diputs-sudo/hyperassist/tree/main/docs/formulas)
+- [API Reference](https://github.com/diputs-sudo/hyperassist/tree/main/docs/api)
 - [FAQ & Troubleshooting](./docs/faq.md) *(coming soon)*
 
 ---
@@ -102,4 +120,6 @@ Apache-2.0
 ## Acknowledgments
 
 HyperAssist is built on lessons learned from real research papers, blog posts, and the deep learning community.  
-For full formula references, see [docs/formulas.md](./docs/formulas/).
+For full formula references, see [docs/formulas.md](https://github.com/diputs-sudo/hyperassist/tree/main/docs/formulas).
+
+---
