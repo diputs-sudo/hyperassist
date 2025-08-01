@@ -4,17 +4,18 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hyperassist"
-version = "0.0.2"
+version = "0.0.3"
 description = "AI training diagnostics and hyperparameter assistant."
 authors = [
   { name="diputs-sudo", email="diputs-sudo@proton.me" }
 ]
 license = "Apache-2.0"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = [
   "numpy",
-  "psutil"
+  "psutil",
+  "scipy"
 ]
 
 [project.urls]
