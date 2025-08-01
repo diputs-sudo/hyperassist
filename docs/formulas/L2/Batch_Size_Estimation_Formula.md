@@ -47,3 +47,5 @@ print(f"Recommended batch size: {batch_size}")  # Output: 512
 - Empirical adjustment is sometimes needed (some frameworks have extra memory overhead).
 - Set max_batch based on the model, task, or practical testing.
 - For most users, buffer_factor between 1.2 and 2.0 is safe.
+
+---
